@@ -1,0 +1,42 @@
+{% extends 'base.html'%}{% block title %}{{idz}}{% endblock %}
+
+{% block content %}
+<br>
+    <h1 align="left">{{idz}}</h1>
+    <br><br>
+    <img src="{{url_for('static', filename='1.png')}}">
+    <br><br>
+
+    <h1 align="left">logs</h1>
+      <br>
+    <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Time</th>
+            <th scope="col">Value</th>
+            <th scope="col">Description</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for i in user.trackers %}
+          {% if (i.tracker_type) is none and (i.tracker_name)==idz %}
+          <tr>
+            <th>{{ i.time_stamp.strftime('%Y-%m-%d') }}</th>
+            <td>{{ i.time_stamp.strftime('%H-%M') }}</td>
+            <td>{{i.value}}</td>
+            <td>{{i.note}}</td>
+            <form method="POST">
+            <input type='hidden' id="tid" name="tid" value='{{i.id}}'/>
+            <td><button type="submit" class="btn btn-outline-danger" name="c1" value="d">Delete</button></td>
+            <td><button type="submit" class="btn btn-outline-success" name="c1" value="e">Edit</button></td>
+            </form>
+            </tr>
+          {% endif %}
+          {% endfor %}
+        </tbody>
+      </table>
+      
+{% endblock %}

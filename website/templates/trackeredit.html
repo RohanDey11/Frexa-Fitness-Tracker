@@ -1,0 +1,47 @@
+{% extends 'base.html'%}{% block title %}update a Tracker{% endblock %}
+
+{% block content %}
+
+<br>
+<h1 align="left">Edit Tracker</h1>
+<br><br>
+  
+<form method="POST">
+    <div class="form-group">
+        <label for="tracker_name">Name</label>
+        <input type="text" 
+        class="form-control" 
+        id="tracker_ename"
+        name="tracker_ename"
+        placeholder="Update tracker name">
+
+    </div>
+
+    <div class="form-group">
+        <label for="description">Description</label>
+        <textarea class="form-control" 
+        id="edescription" 
+        name="edescription"
+        rows="3"
+        placeholder="Update tracker description"></textarea>
+    </div>
+    {% for i in user.trackers %}
+    {%if (i.tracker_name)==idz and (i.tracker_type) is not none%}
+    <div class="form-group">
+        <label for="t">Tracker Type</label>
+        <input type="text" 
+        class="form-control"
+        placeholder="{{i.tracker_type}}" disabled>
+        <small id="emailHelp" class="form-text text-muted">Tracker Type cannot be changed</small>
+    {%endif%}
+    {% endfor %}  
+    </div>
+
+    <br>
+    <button type="submit" class="btn btn-primary btn-lg">Log it</button>
+
+
+</form>
+
+{% endblock %}
+

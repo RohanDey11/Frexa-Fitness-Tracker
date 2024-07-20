@@ -1,0 +1,87 @@
+{% extends 'base.html'%}{% block title %}{{idz}} log{% endblock %}
+
+{% block content %}
+
+<br>
+    <h1 align="left">log a {{idz}} data</h1>
+    <br><br>
+    <form method="POST">
+    <div class="form-group">
+        <label for="time_stamp">When</label>
+        <input type="datetime-local" 
+        class="form-control" 
+        id="time_stamp"
+        name="time_stamp"
+        min="2013-10-01" 
+        max="2022-03-30
+        placeholder="select date and time">
+    </div>
+        {% for i in user.trackers %}
+        {% if (i.tracker_type)=='Multiple Choice' and (i.tracker_name)==idz %}
+        <div class="form-group">
+        <label for="tracker_type">value</label>
+        <select class="form-control" 
+        id="value"
+        name="value">
+        {% set list1 = i.settings.split(',') %}
+        {% for item in list1 %}
+        <option>{{ item }}</option>
+        {% endfor %} 
+        </select>
+        </div>
+        {% endif %}
+        {% endfor %}
+
+        {% for i in user.trackers %}
+        {% if (i.tracker_type)=='Numerical' and (i.tracker_name)==idz %}
+        <div class="form-group">
+            <label for="tracker_type">Value</label>
+            <input type="text"
+            class="form-control"
+            id="value"
+            name="value"
+            placeholder="enter value">
+        </div>
+        {% endif %}
+        {% endfor %}
+
+        {% for i in user.trackers %}
+        {% if (i.tracker_type)=='Time Duration' and (i.tracker_name)==idz %}
+        <div class="form-group">
+            <label for="tracker_type">Value</label>
+            <input type="text"
+            class="form-control"
+            id="value"
+            name="value"
+            placeholder="enter value in minutes">
+        </div>
+        {% endif %}
+        {% endfor %}
+
+        {% for i in user.trackers %}
+        {% if (i.tracker_type)=='Boolean' and (i.tracker_name)==idz %}
+        <div class="form-group">
+            <label for="tracker_type">Value</label>
+            <select class="form-control" 
+            id="value"
+            name="value">
+            <option>Yes</option>
+            <option>No</option>
+            </select>
+        </div>
+        {% endif %}
+        {% endfor %}
+
+
+    <div class="form-group">
+    <label for="note">Notes</label>
+    <input type="string" 
+    class="form-control" 
+    id="note"
+    name="note" 
+    placeholder="Add a short note about your entry">
+  </div>
+  <button type="submit" class="btn btn-primary">Log it</button>
+</form>
+
+{% endblock %}

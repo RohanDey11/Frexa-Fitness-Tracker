@@ -1,0 +1,42 @@
+{% extends 'base.html'%}{% block title %}Home{% endblock %}
+
+{% block content %}
+<br>
+<h1 align="center">Dashboard</h1>
+<br> <br>
+<table class="table table hover" id=Dashboard">
+    <thead>
+        <tr>
+            <th scope="col">Tracker</th>
+            <th scope="col">Add Data</th>
+            <th scope="col">Delete Tracker</th>
+            <th scope="col">Edit Tracker</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in user.trackers %}
+        {%if (i.tracker_type) is not none%}
+        <tr>
+        <form method="POST">
+          <input type='hidden' id="idz" name="idz" value='{{i.tracker_name}}'/>
+          <th scope="row"><button type="submit" class="btn btn-outline-info" name="b1" value="b1">{{i.tracker_name}}</button></th>
+        
+          <td><button type="submit" class="btn btn-outline-primary" name="b1" value="b2">+</button></td>
+          <td><button type="submit" class="btn btn-outline-danger" name="b1" value="bd">Delete</button></td>
+          <td><button type="submit" class="btn btn-outline-success" name="b1" value="be">Edit</button></td>
+        </form>
+        </tr>
+        {%endif%}
+        {% endfor %}  
+    </tbody>
+</table>
+    <br>
+    <div align="center">
+        <a href="/addtracker" id="addtracker"><button type="submit" class="btn btn-primary">Add a Tracker</button></a>
+      </div>
+      <br><br>
+
+
+
+{% endblock %}
+

@@ -1,0 +1,53 @@
+{% extends 'base.html'%}{% block title %}Add a Tracker{% endblock %}
+
+{% block content %}
+
+<br>
+<h1 align="left">Add a Tracker</h1>
+<br><br>
+  
+<form method="POST">
+    <div class="form-group">
+        <label for="tracker_name">Name</label>
+        <input type="text" 
+        class="form-control" 
+        id="tracker_name"
+        name="tracker_name"
+        placeholder="Enter tracker name">
+
+    </div>
+
+    <div class="form-group">
+        <label for="description">Description</label>
+        <textarea class="form-control" 
+        id="description" 
+        name="description"
+        rows="3"
+        placeholder="Enter tracker description"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="tracker_type">Tracker Type</label>
+        <select class="form-control" 
+        id="tracker_type"
+        name="tracker_type">
+        <option>Numerical</option>
+        <option>Multiple Choice</option>
+        <option>Time Duration</option>
+        <option>Boolean</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="settings">Choices</label>
+        <input type="text" class="form-control" id="settings" name="settings" placeholder="Enter comma seperated choices">
+        <small id="emailHelp" class="form-text text-muted">Provide input only if Multiple Choice type is selected.</small>
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary btn-lg">Log it</button>
+
+
+</form>
+
+{% endblock %}
+
